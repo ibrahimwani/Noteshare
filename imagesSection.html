@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .images-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+            width: 30%;
+            background: linear-gradient(to bottom, #003366, #004080);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            overflow-y: auto;
+            margin-top: 40px;
+        }
+
+        .pdf-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border: 1px solid #004080;
+            border-radius: 5px;
+            text-align: center;
+            color: #003366;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .pdf-item:hover {
+            transform: scale(1.05);
+            background-color: #004080;
+            color: #ffffff;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 2px solid #003366;
+            padding: 20px;
+            width: 60%;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #003366;
+            font-size: 1.8em;
+        }
+
+        p {
+            color: #555555;
+            font-size: 1.1em;
+        }
+
+        .upload-button, .previous-button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        .upload-button:hover, .previous-button:hover {
+            background-color: #003366;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="images-section">
+        <div class="pdf-item" onclick="alert('Image 1 clicked!')">Image 1</div>
+        <div class="pdf-item" onclick="alert('Image 2 clicked!')">Image 2</div>
+        <div class="pdf-item" onclick="alert('Image 3 clicked!')">Image 3</div>
+        <div class="pdf-item" onclick="alert('Image 4 clicked!')">Image 4</div>
+        <div class="pdf-item" onclick="alert('Image 5 clicked!')">Image 5</div>
+        <div class="pdf-item" onclick="alert('Image 6 clicked!')">Image 6</div>
+    </div>
+    <div class="container">
+        <h1>Chapter 2</h1>
+        <p>
+            Welcome to Chapter 2. Here, you can explore the content and interact with the images on the left-hand side.
+        </p>
+        <button class="upload-button">Upload New Image</button>
+        <div class="button-container">
+            <button class="previous-button" onclick="goToPreviousPage()">Go to Previous Page</button>
+        </div>
+    </div>
+
+    <script>
+        function goToPreviousPage() {
+            alert('Navigating to the previous page...');
+        }
+    </script>
+</body>
+</html>
