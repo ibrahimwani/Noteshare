@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorful Countdown Timer</title>
+    <title>Persistent Countdown Timer</title>
     <style>
         /* Body Styling */
         body {
@@ -157,9 +157,17 @@
     </div>
 
     <script>
-        // Set the target date 10 days from now
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 10);
+        // Function to set the target date in localStorage if not set
+        function initializeTargetDate() {
+            if (!localStorage.getItem("targetDate")) {
+                const targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 10);
+                localStorage.setItem("targetDate", targetDate);
+            }
+            return new Date(localStorage.getItem("targetDate"));
+        }
+
+        const targetDate = initializeTargetDate();
 
         function updateCountdown() {
             const now = new Date().getTime();
