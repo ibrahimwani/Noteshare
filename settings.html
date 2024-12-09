@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings Page</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background-color: #4caf50;
+      color: white;
+      padding: 20px;
+      
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Main Content */
+    .content {
+      padding: 20px;
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Settings Section */
+    .settings-section {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .settings-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .settings-header i {
+      font-size: 1.8rem;
+      color: #4caf50;
+    }
+
+    .settings-header button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .settings-header button:hover {
+      background-color: #388e3c;
+      transform: scale(1.1);
+    }
+
+    .settings-content {
+      display: none;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .settings-content.active {
+      display: block;
+    }
+
+    .settings-content label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .settings-content input[type="text"],
+    .settings-content input[type="password"],
+    .settings-content select,
+    .settings-content textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 5px;
+      font-size: 1rem;
+      background-color: #f7f9fc;
+    }
+
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4caf50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+    .header div{
+        display: flex;
+        justify-content: space-between;
+    }
+    .header div button{
+        padding: 15px;
+        width: 8rem;
+        font-size: 18px;
+        border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div>
+        <h3>Settings</h3>
+        <a href="homepage.html"><button>Home</button></a>    
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Profile Settings -->
+    <div class="settings-section">
+      <div class="settings-header">
+        <i class="icon">👤</i>
+        Profile Settings
+        <button onclick="toggleContent('profile')">+</button>
+      </div>
+      <div class="settings-content" id="profile">
+        <label>
+          Full Name
+          <input type="text" placeholder="Enter your full name" value="John Doe">
+        </label>
+        <label>
+          Username
+          <input type="text" placeholder="Enter your username" value="john_d">
+        </label>
+        <label>
+          Email
+          <input type="text" placeholder="Enter your email" value="johndoe@gmail.com">
+        </label>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-section">
+      <div class="settings-header">
+        <i class="icon">🔔</i>
+        Notifications
+        <button onclick="toggleContent('notifications')">+</button>
+      </div>
+      <div class="settings-content" id="notifications">
+        <label>
+          Email Notifications
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </label>
+        <label>
+          Push Notifications
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+        </label>
+      </div>
+    </div>
+
+    <!-- Theme Settings -->
+    <div class="settings-section">
+      <div class="settings-header">
+        <i class="icon">🎨</i>
+        Theme Settings
+        <button onclick="toggleContent('theme')">+</button>
+      </div>
+      <div class="settings-content" id="theme">
+        <label>
+          Select Theme
+          <select>
+            <option>Light</option>
+            <option selected>Dark</option>
+            <option>Blue</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- Privacy Settings -->
+    <div class="settings-section">
+      <div class="settings-header">
+        <i class="icon">🔒</i>
+        Privacy Settings
+        <button onclick="toggleContent('privacy')">+</button>
+      </div>
+      <div class="settings-content" id="privacy">
+        <label>
+          Public Profile Visibility
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </label>
+        <label>
+          Allow Search Engines to Index Profile
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleContent(sectionId) {
+      const content = document.getElementById(sectionId);
+      const isActive = content.classList.contains('active');
+      const allContents = document.querySelectorAll('.settings-content');
+
+      // Collapse all sections
+      allContents.forEach((section) => section.classList.remove('active'));
+
+      // Expand the clicked section if not already active
+      if (!isActive) {
+        content.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
